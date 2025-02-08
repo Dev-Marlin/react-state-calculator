@@ -1,56 +1,60 @@
 import "./App.css"
+import NumberPanel from "./Components/NumberPanel"
+import OperatorPanel from "./Components/OperatorPanel"
+import {React, useState} from 'react'
 
 function App() {
+  const [firstNumber, setFirstNumber] = useState(0);
+  const [operator, setOperator] = useState("");
+  const [secondNumber, setSecondNumber] = useState(0);
+  const [result, setResult] = useState(0);
+
+  function Calculate()
+  {
+    switch(operator)
+    {
+      case "+":
+        setResult(firstNumber+secondNumber);
+        break;
+      case "-":
+        setResult(firstNumber-secondNumber);
+        break;
+      case "/":
+        setResult(Math.round((firstNumber/secondNumber)*100)/100);
+        break;
+      case "*":
+        setResult(firstNumber*secondNumber);
+        break;
+    }
+
+    setFirstNumber(0);
+    setSecondNumber(0);
+  }
+
 
   return (
     <div className="calculator">
       <div className="panel">
-        <p>0</p>
-        <div className="numbers">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-          <button>Clear</button>
-        </div>
+        <p>{firstNumber}</p>
+
+        <NumberPanel setNumber={setFirstNumber} number={firstNumber}></NumberPanel>
       </div>
 
       <div className="panel">
-        <p>+</p>
-        <div className="numbers">
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>÷</button>
-        </div>
+        <p>{operator}</p>
+        <OperatorPanel changeOperator={setOperator}></OperatorPanel>
       </div>
 
       <div className="panel">
-        <p>0</p>
-        <div className="numbers">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-          <button>Clear</button>
-        </div>
+        <p>{secondNumber}</p>
+
+        <NumberPanel setNumber={setSecondNumber} number={secondNumber}></NumberPanel>
       </div>
+
       <div className="panel answer">
-        <p>0</p>
+        <p>{result}</p>
         <div>
-          <button>=</button>
+          <button onClick={()=>Calculate()}>=</button>
         </div>
       </div>
     </div>
