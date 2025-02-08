@@ -1,8 +1,8 @@
 import React from 'react'
 
-function NbrButton({value, setNumber, number}) {
+function NbrButton({value, setNumber, oldValue, action}) {
   return (
-    <button onClick={()=> setNumber(number*10 + value)}>{value}</button>
+    <button onClick={()=> action(setNumber, oldValue, value)}>{value}</button>
   )
 }
 

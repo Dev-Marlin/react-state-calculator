@@ -31,13 +31,24 @@ function App() {
     setSecondNumber(0);
   }
 
+  function action(setNbr, oldValue, newValue)
+  {
+    if(oldValue.length == 1 && oldValue == 0)
+    {
+      setNbr(newValue);
+    }
+    else{
+      setNbr((oldValue*10)+newValue);
+    }
+  }
+
 
   return (
     <div className="calculator">
       <div className="panel">
         <p>{firstNumber}</p>
 
-        <NumberPanel setNumber={setFirstNumber} number={firstNumber}></NumberPanel>
+        <NumberPanel action={action} setNumber={setFirstNumber} oldValue={firstNumber}></NumberPanel>
       </div>
 
       <div className="panel">
@@ -48,7 +59,7 @@ function App() {
       <div className="panel">
         <p>{secondNumber}</p>
 
-        <NumberPanel setNumber={setSecondNumber} number={secondNumber}></NumberPanel>
+        <NumberPanel action={action} setNumber={setSecondNumber} oldValue={secondNumber}></NumberPanel>
       </div>
 
       <div className="panel answer">

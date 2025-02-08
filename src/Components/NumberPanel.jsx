@@ -1,7 +1,7 @@
 import React from 'react'
 import NbrButton from './NbrButton'
 
-function NumberPanel({setNumber, number}) {
+function NumberPanel({setNumber, oldValue, action}) {
     let nbrs = [1,2,3,4,5,6,7,8,9,0]
   return (
     <div className="numbers">
@@ -10,7 +10,8 @@ function NumberPanel({setNumber, number}) {
                 <NbrButton key={nbr} 
                            value={nbr} 
                            setNumber={setNumber}
-                           number={number}></NbrButton>
+                           action={action}
+                           oldValue={oldValue}></NbrButton>
             ))
         }
 
